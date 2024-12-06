@@ -30,6 +30,10 @@ class BookletMinimap{
         event.stopPropagation();
         this.running=true;       
 
+        let x = event.offsetX - this.maskWidth/2;
+        let y = event.offsetY - this.maskHeight/2;
+        this.scrollTo(x,y)
+
         document.addEventListener('pointermove',this.onpointermove)
         document.addEventListener('pointerup',this.onpointerup)
     }
@@ -44,11 +48,6 @@ class BookletMinimap{
 
         let x = event.offsetX - this.maskWidth/2;
         let y = event.offsetY - this.maskHeight/2;
-        // let x = event.offsetX;
-        // let y = event.offsetY;
-        // console.log(event.target);
-        
-
         this.scrollTo(x,y)
 
         
