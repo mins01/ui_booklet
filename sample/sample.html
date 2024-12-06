@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko" >
 <head>
-    <title>BOOKLET STYLE</title>
+    <title>BOOKLET - SAMPLE</title>
     <meta charset="utf-8">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta http-equiv="Content-Style-Type" content="text/css">
@@ -20,19 +20,19 @@
 
     <!-- 부트스트랩 5.3.x -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <!-- vue.js -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
     
     <!-- meta og -->
     
-    <meta property="og:title" content="booklet style">
-    <meta property="og:description" content="booklet style">
+    <meta property="og:title" content="booklet - sample">
+    <meta property="og:description" content="booklet - sample">
     <meta name="og:image" content="http://www.mins01.com/img/logo.gif">
     <meta property="og:image:width" content="190">
     <meta property="og:image:height" content="70" />
-    <meta property="og:site_name" content="booklet style" />
+    <meta property="og:site_name" content="booklet - sample" />
     <meta property="og:type" content="website">
     
     <!-- //meta og -->
@@ -60,19 +60,80 @@
             let booklet0 = globalThis.booklet0 = new Booklet(document.querySelector('#booklet0'));
             // booklet0.setPageByIdx(1)
 
+            booklet0.detail = function(part){
+                const content = part.querySelector('.booklet-page-content');
+                const img = part.querySelector('.booklet-page-content-img');
+                // console.log('재선언해서 도작하도록 하자',content,img);
+                
+                
+
+                const p1 = new Promise(r => {let timg = bd0.target.querySelector('.booklet-detail-img'); timg.onload=r; timg.src = img.src; });
+                const p2 = new Promise(r => {let timg = bm0.target.querySelector('.booklet-minimap-img'); timg.onload=r; timg.src = img.src;});
+
+                Promise.all([p1,p2]).then((values)=>{
+                    // console.log(values);
+                    bd0.center();
+                    modal_detail.show();
+                })
+            }
+
+            document.querySelectorAll('.booklet-page-content-img').forEach((el)=>{
+                let ri = Math.floor(Math.random()*3);
+                switch(ri){
+                    case 0:el.src = 'pages/page-rect.png';break;
+                    case 1:el.src = 'pages/page-v-long.png';break;
+                    case 2:el.src = 'pages/page-h-long.png';break;
+                }
+            });
+
         })
+    </script>
+
+    <link rel="stylesheet" href="../booklet-detail.css">
+    <script src="../BookletDetail.js"></script>
+    <link rel="stylesheet" href="../booklet-minimap.css">
+    <script src="../BookletMinimap.js"></script>
+    <style>
+        /* 화면 기준으로 2배까지만. 너무 크니깐 스크롤이 힘들다. */
+        .booklet-detail-img {
+            max-width: 200svw;
+            max-height: max(200svh,200%);
+        }
+    </style>
+    <script>
+        window.addEventListener('load',(event)=>{
+            // let bd0 = globalThis.bd0 = new BookletDetail(document.querySelector('.booklet-detail-view'),document.querySelector('.booklet-minimap'))
+            let bd0 = globalThis.bd0 = new BookletDetail(document.querySelector('.booklet-detail-view'))
+            let bm0 = globalThis.bm0 = new BookletMinimap(document.querySelector('.booklet-minimap'),bd0);
+
+            // bd0.zoom = 0.1
+            setTimeout(()=>{
+                bd0.center();
+            },10)
+            
+            
+            
+        })
+    </script>
+    <script>
+        window.addEventListener('load',(event)=>{
+            const modal_detail = globalThis.modal_detail = new bootstrap.Modal( document.getElementById("modal_detail") );
+            document.getElementById("modal_detail").addEventListener('shown.bs.modal', event => {
+                setTimeout(()=>{ bd0.center(); },10)
+            })
+            
+        })
+        
     </script>
     
 </head>
 <body>
-    <div class="booklet-container debug">
-        <article id="booklet0" class="booklet" data-fold="1">
-            <header class="booklet-header">
-                <nav class="m-2">
-                    <h1 class="m-0 p-0">BOOKLET: E-BOOK</h1>
-                </nav>
-            </header>
-            <div class="booklet-body">
+    <div class="booklet-container">
+        <article id="booklet0" class="booklet card" data-fold="1">
+            <div class="card-header booklet-header">
+                <h1 class="m-0 p-0">SAMPLE</h1>
+            </div>
+            <div class="card-body booklet-body">
                 <div class="booklet-pages">
                     <div class="booklet-page">
                         <div class="booklet-page-layout">
@@ -80,6 +141,7 @@
                             <div class="booklet-page-part right" data-part="right"><div class="booklet-page-transform"><div class="booklet-page-content" data-content="cover"><div class="booklet-page-content-page">COVER</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
                         </div>
                     </div>
+
                     <div class="booklet-page">
                         <div class="booklet-page-layout">
                             <div class="booklet-page-part left" data-part="left"><div class="booklet-page-transform"><div class="booklet-page-content no-btn-detail" data-content="blank"><div class="booklet-page-content-page">BLANK</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
@@ -118,8 +180,8 @@
                     </div>
                 </div>
             </div>
-            <footer class="booklet-footer">
-                <nav class="d-flex justify-content-center gap-2 m-2">
+            <div class="card-footer booklet-footer">
+                <nav class="d-flex justify-content-center gap-2">
                     <button type="button" class="btn btn-sm btn-primary" onclick="booklet0.first()">처음</button>
                     <button type="button" class="btn btn-sm btn-primary" onclick="booklet0.prev()">이전</button>
                     <div class="input-group input-group-sm d-inline-flex" style="width: 8em;">
@@ -130,25 +192,68 @@
                     <button type="button" class="btn btn-sm btn-primary" onclick="booklet0.next()">다음</button>
                     <button type="button" class="btn btn-sm btn-primary" onclick="booklet0.last()">마지막</button>
                 </nav>
-                <hr>
-                <nav class="d-flex justify-content-center gap-2 m-2">
-                    <button type="button" class="btn btn-sm btn-primary" onclick="document.querySelectorAll('.booklet-page-content-img').forEach((el)=>{el.src = 'pages/page-rect.png';});">일반 이미지</button>
-                    <button type="button" class="btn btn-sm btn-primary" onclick="document.querySelectorAll('.booklet-page-content-img').forEach((el)=>{el.src = 'pages/page-v-long.png';});">세로 긴 이미지</button>
-                    <button type="button" class="btn btn-sm btn-primary" onclick="document.querySelectorAll('.booklet-page-content-img').forEach((el)=>{el.src = 'pages/page-h-long.png';});">가로 긴 이미지</button> 
-                    <button type="button" class="btn btn-sm btn-primary" onclick="document.querySelectorAll('.booklet-page-content-img').forEach((el)=>{
-                        let ri = Math.floor(Math.random()*3);
-                        switch(ri){
-                            case 0:el.src = 'pages/page-rect.png';break;
-                            case 1:el.src = 'pages/page-v-long.png';break;
-                            case 2:el.src = 'pages/page-h-long.png';break;
-                        }
-                        });">랜덤 이미지</button>
-                        <button type="button" class="btn btn-sm btn-primary" onclick="booklet0.target.style.setProperty('--content-aspect-ratio','3 / 4');">비율 3 / 4</button> 
-                        <button type="button" class="btn btn-sm btn-primary" onclick="booklet0.target.style.setProperty('--content-aspect-ratio','9 / 16');">비율 9 / 16</button> 
- 
-                </nav>
-            </footer>
+            </div>
         </article>
     </div>
+<!-- Modal trigger button -->
+<!-- <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal_detail" > Launch </button> -->
+
+<!-- Modal Body -->
+<!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+<div class="booklet-detail-container">
+    <div class="modal fade" id="modal_detail" tabindex="-1"   data-bs-keyboard="true"  role="dialog"  aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content h-100">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        상세보기
+                    </h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                    <article class="booklet-detail">
+                        <div class="booklet-detail-body m-0 p-0">
+                            <div class="booklet-detail-view-wrap">
+                                <div class="booklet-detail-view">
+                                    <img class="booklet-detail-img img-src" src="pages/page-rect.png">
+                                </div>
+                            </div>
+                            <div class="booklet-minimap-wrap">
+                                <div class="booklet-minimap">
+                                    <div class="booklet-minimap-rect"></div>
+                                    <img class="booklet-minimap-img img-src" src="pages/page-rect.png" style="margin: 0%; box-sizing: content-box;">
+                                    <!-- <div class="booklet-minimap-img-wrap" >
+                                    </div> -->
+                                </div>
+                                <div class="booklet-minimap-rect-mask">
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Optional: Place to the bottom of scripts -->
+
+
 </body>
 </html>

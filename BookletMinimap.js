@@ -62,7 +62,7 @@ class BookletMinimap{
     scrollTo(x,y){
         x = x / this.target.offsetWidth * this.bookletDetail.target.scrollWidth;
         y = y / this.target.offsetHeight * this.bookletDetail.target.scrollHeight;
-        console.log(x,y,this.bookletDetail.target.scrollWidth,this.bookletDetail.target.scrollHeight);
+        // console.log(x,y,this.bookletDetail.target.scrollWidth,this.bookletDetail.target.scrollHeight);
         this.bookletDetail.scrollTo(x,y)
     }
 

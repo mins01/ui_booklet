@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko" >
 <head>
-    <title>BOOKLET STYLE - DETAIL</title>
+    <title>BOOKLET - DETAIL</title>
     <meta charset="utf-8">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta http-equiv="Content-Style-Type" content="text/css">
@@ -27,12 +27,12 @@
     
     <!-- meta og -->
     
-    <meta property="og:title" content="booklet style - detail">
-    <meta property="og:description" content="booklet style - detail">
+    <meta property="og:title" content="booklet - detail">
+    <meta property="og:description" content="booklet - detail">
     <meta name="og:image" content="http://www.mins01.com/img/logo.gif">
     <meta property="og:image:width" content="190">
     <meta property="og:image:height" content="70" />
-    <meta property="og:site_name" content="booklet style - detail" />
+    <meta property="og:site_name" content="booklet - detail" />
     <meta property="og:type" content="website">
     
     <!-- //meta og -->
@@ -59,47 +59,49 @@
 </head>
 <body>
     <div class="booklet-detail-container">
-        <article id="booklet0" class="booklet-detail">
-            <header class="booklet-detail-header">
-                <nav class="m-2">
-                    <h1 class="m-0 p-0">BOOKLET-DETAIL: E-BOOK</h1>
-                </nav>
-            </header>
-            <div class="booklet-detail-body">
-                <div class="booklet-detail-view-wrap">
-                    <div class="booklet-detail-view">
-                        <img class="booklet-detail-img img-src" src="pages/page-rect.png">
-                    </div>
-                </div>
-                <div class="booklet-minimap-wrap">
-                    <div class="booklet-minimap">
-                        <div class="booklet-minimap-rect"></div>
-                        <img class="booklet-minimap-img img-src" src="pages/page-rect.png" style="margin: 0%; box-sizing: content-box;">
-                        <!-- <div class="booklet-minimap-img-wrap" >
-                        </div> -->
-                    </div>
-                    <div class="booklet-minimap-rect-mask">
-                    </div>
-                </div>
-            </div>
-            <footer class="booklet-detail-footer">
-                <div class="m-2 d-flex justify-content-center gap-2">
-                    <div class="input-group d-inline-flex" style="width: 30em">
-                        <span class="input-group-text">ZOOM</span>
-                        <div class="form-control d-flex align-items-center">
-                            <input type="range" list="datalist_zoom" class="w-100" min="0.1" step="0.2" max="2" value="1" oninput="bd0.zoom=this.value;bd0.center()">
+        <div class="booklet-detail-wrap">
+            <article class="booklet-detail">
+                <header class="booklet-detail-header">
+                    <nav class="m-2">
+                        <h1 class="m-0 p-0">BOOKLET-DETAIL: E-BOOK</h1>
+                    </nav>
+                </header>
+                <div class="booklet-detail-body">
+                    <div class="booklet-detail-view-wrap">
+                        <div class="booklet-detail-view">
+                            <img class="booklet-detail-img img-src" src="pages/page-rect.png">
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary" onclick="bd0.center()">중앙으로</button>
+                    <div class="booklet-minimap-wrap">
+                        <div class="booklet-minimap">
+                            <div class="booklet-minimap-rect"></div>
+                            <img class="booklet-minimap-img img-src" src="pages/page-rect.png" style="margin: 0%; box-sizing: content-box;">
+                            <!-- <div class="booklet-minimap-img-wrap" >
+                            </div> -->
+                        </div>
+                        <div class="booklet-minimap-rect-mask">
+                        </div>
+                    </div>
                 </div>
-                <hr>
-                <div class="m-2 d-flex justify-content-center gap-2">
-                    <button type="button" class="btn btn-primary" onclick="document.querySelectorAll('.img-src').forEach((el)=>{el.src = 'pages/page-rect.png'; el.addEventListener('load',()=>{ bd0.center() },{once:true}) });">일반 이미지</button>
-                    <button type="button" class="btn btn-primary" onclick="document.querySelectorAll('.img-src').forEach((el)=>{el.src = 'pages/page-v-long.png'; el.addEventListener('load',()=>{ bd0.center() },{once:true}) });">세로 긴 이미지</button>
-                    <button type="button" class="btn btn-primary" onclick="document.querySelectorAll('.img-src').forEach((el)=>{el.src = 'pages/page-h-long.png'; el.addEventListener('load',()=>{ bd0.center() },{once:true}) });">가로 긴 이미지</button>
-                </div>
-            </footer>
-        </article>
+                <footer class="booklet-detail-footer">
+                    <div class="m-2 d-flex justify-content-center gap-2">
+                        <div class="input-group d-inline-flex" style="width: 30em">
+                            <span class="input-group-text">ZOOM</span>
+                            <div class="form-control d-flex align-items-center">
+                                <input type="range" list="datalist_zoom" class="w-100" min="0.1" step="0.2" max="2" value="1" oninput="bd0.zoom=this.value;bd0.center()">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="bd0.center()">중앙으로</button>
+                    </div>
+                    <hr>
+                    <div class="m-2 d-flex justify-content-center gap-2">
+                        <button type="button" class="btn btn-primary" onclick="document.querySelectorAll('.img-src').forEach((el)=>{el.src = 'pages/page-rect.png'; el.addEventListener('load',()=>{ bd0.center() },{once:true}) });">일반 이미지</button>
+                        <button type="button" class="btn btn-primary" onclick="document.querySelectorAll('.img-src').forEach((el)=>{el.src = 'pages/page-v-long.png'; el.addEventListener('load',()=>{ bd0.center() },{once:true}) });">세로 긴 이미지</button>
+                        <button type="button" class="btn btn-primary" onclick="document.querySelectorAll('.img-src').forEach((el)=>{el.src = 'pages/page-h-long.png'; el.addEventListener('load',()=>{ bd0.center() },{once:true}) });">가로 긴 이미지</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
     </div>
     <datalist id="datalist_zoom">
         <option value="0.2"></option>        
