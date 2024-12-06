@@ -41,13 +41,20 @@
     <script src="../Booklet.js"></script>
     <script>
         window.addEventListener('load',(event)=>{
-            document.querySelector('#booklet0').addEventListener('booklet-sync',(event)=>{
-                console.log('booklet-sync',event.detail.booklet);
+            document.querySelector('#booklet0').addEventListener('booklet.sync',(event)=>{
+                console.log('booklet.sync',event.detail.booklet);
                 const booklet = event.detail.booklet
                 document.querySelector('#input_page').value = booklet.pageIdx+1;
                 document.querySelector('#input_page').max = booklet.length;
                 document.querySelector('#input_page').min = 1;
+            }) 
+            document.querySelector('#booklet0').addEventListener('booklet.click',(event)=>{
+                console.log('booklet.click',event.detail.target,event.detail.booklet,event.detail.target,event.detail.content);
+                console.log(event.detail.target.dataset.click);
                 
+                if((event.detail.target.dataset.click??null)=='detail'){
+                    console.log('detail-view 소스 동작 부분');
+                }
             }) 
 
             let booklet0 = globalThis.booklet0 = new Booklet(document.querySelector('#booklet0'));
@@ -65,49 +72,49 @@
                     <h1 class="m-0 p-0">BOOKLET: E-BOOK</h1>
                 </nav>
             </header>
-            <div class="booklet-body clickable">
+            <div class="booklet-body">
                 <div class="booklet-pages">
                     <div class="booklet-page">
                         <div class="booklet-page-layout">
-                            <div class="booklet-page-part left"><div class="booklet-page-transform"><div class="booklet-page-content empty"><div class="booklet-page-content-page">EMPTY</div></div></div></div>
-                            <div class="booklet-page-part right"><div class="booklet-page-transform"><div class="booklet-page-content cover"><div class="booklet-page-content-page">COVER</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
+                            <div class="booklet-page-part left" data-part="left"><div class="booklet-page-transform"><div class="booklet-page-content no-btn-detail" data-content="empty"><div class="booklet-page-content-page">EMPTY</div></div></div></div>
+                            <div class="booklet-page-part right" data-part="right"><div class="booklet-page-transform"><div class="booklet-page-content" data-content="cover"><div class="booklet-page-content-page">COVER</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
                         </div>
                     </div>
 
                     <div class="booklet-page">
                         <div class="booklet-page-layout">
-                            <div class="booklet-page-part left"><div class="booklet-page-transform"><div class="booklet-page-content blank"><div class="booklet-page-content-page">BLANK</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
-                            <div class="booklet-page-part right"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">1</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
+                            <div class="booklet-page-part left" data-part="left"><div class="booklet-page-transform"><div class="booklet-page-content no-btn-detail" data-content="blank"><div class="booklet-page-content-page">BLANK</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
+                            <div class="booklet-page-part right" data-part="right"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">1</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
                         </div>
                     </div>
                     <div class="booklet-page">
                         <div class="booklet-page-layout">
-                            <div class="booklet-page-part left"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">2</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
-                            <div class="booklet-page-part right"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">3</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
+                            <div class="booklet-page-part left" data-part="left"><div class="booklet-page-transform"><div class="booklet-page-content" style="padding:20% 0px 20% 20%;"><div class="booklet-page-content-page">padding:20% 0px 20% 20%;</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
+                            <div class="booklet-page-part right" data-part="right"><div class="booklet-page-transform"><div class="booklet-page-content no-btn-detail"><div class="booklet-page-content-page">3</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
                         </div>
                     </div>
                     <div class="booklet-page">
                         <div class="booklet-page-layout">
-                            <div class="booklet-page-part left"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">4</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
-                            <div class="booklet-page-part right"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">5</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
+                            <div class="booklet-page-part left" data-part="left"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">4</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
+                            <div class="booklet-page-part right" data-part="right"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">5</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
                         </div>
                     </div>
                     <div class="booklet-page">
                         <div class="booklet-page-layout">
-                            <div class="booklet-page-part left"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">6</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
-                            <div class="booklet-page-part right"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">7</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
+                            <div class="booklet-page-part left" data-part="left"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">6</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
+                            <div class="booklet-page-part right" data-part="right"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">7</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
                         </div>
                     </div>
                     <div class="booklet-page">
                         <div class="booklet-page-layout">
-                            <div class="booklet-page-part left"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">8</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
-                            <div class="booklet-page-part right"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">9</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
+                            <div class="booklet-page-part left" data-part="left"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">8</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
+                            <div class="booklet-page-part right" data-part="right"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">9</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
                         </div>
                     </div>
                     <div class="booklet-page">
                         <div class="booklet-page-layout">
-                            <div class="booklet-page-part left"><div class="booklet-page-transform"><div class="booklet-page-content cover"><div class="booklet-page-content-page">COVER</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
-                            <div class="booklet-page-part right"><div class="booklet-page-transform"><div class="booklet-page-content empty"><div class="booklet-page-content-page">EMPTY</div></div></div></div>
+                            <div class="booklet-page-part left" data-part="left"><div class="booklet-page-transform"><div class="booklet-page-content" data-content="cover"><div class="booklet-page-content-page">COVER</div><img class="booklet-page-content-img" src="pages/page-rect.png"></div></div></div>
+                            <div class="booklet-page-part right" data-part="right"><div class="booklet-page-transform"><div class="booklet-page-content no-btn-detail"  data-content="empty"><div class="booklet-page-content-page">EMPTY</div></div></div></div>
                         </div>
                     </div>
                 </div>
@@ -136,7 +143,10 @@
                             case 1:el.src = 'pages/page-v-long.png';break;
                             case 2:el.src = 'pages/page-h-long.png';break;
                         }
-                        });">랜덤 이미지</button> 
+                        });">랜덤 이미지</button>
+                        <button type="button" class="btn btn-sm btn-primary" onclick="booklet0.target.style.setProperty('--content-aspect-ratio','3 / 4')">비율 3 / 4</button> 
+                        <button type="button" class="btn btn-sm btn-primary" onclick="booklet0.target.style.setProperty('--content-aspect-ratio','9 / 16')">비율 9 / 16</button> 
+ 
                 </nav>
             </footer>
         </article>

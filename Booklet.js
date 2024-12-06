@@ -4,7 +4,7 @@ class Booklet{
     constructor(booklet){
         this.target = booklet;
 
-        this.target.addEventListener('click',(event)=>{this.onclick(event)})
+        // this.target.addEventListener('click',(event)=>{this.onclick(event)})
 
         this.pagePrev = null;
         this.pageCurr = null;
@@ -27,9 +27,35 @@ class Booklet{
         this.pages.forEach((page,idx) => {
             page.dataset.idx = idx;
         });
+        this.appendContentBtns();
         this.target.classList.add('on')
     }
 
+    appendContentBtns(){
+        this.target.querySelectorAll('.booklet-page-part').forEach((part)=>{
+            const content = part.querySelector('.booklet-page-content');
+            if(!content) return;
+            const part_type = part.dataset.part??'single';
+            if(!content.classList.contains('no-btn-detail') && !content.querySelector('booklet-btn-detail')){
+                let btn = document.createElement('button')
+                btn.classList.add('booklet-btn-detail','booklet-content-btn','clickable');
+                btn.addEventListener('click',(evnet)=>{ this.detail(evnet.target.closest('.booklet-page-part'))})
+                content.append(btn)
+            }
+            if(part_type == 'left' && !content.classList.contains('no-btn-prev') && !content.querySelector('booklet-btn-prev')){
+                let btn = document.createElement('button')
+                btn.classList.add('booklet-btn-prev','booklet-btn-turn','booklet-content-btn','clickable');
+                btn.addEventListener('click',(evnet)=>{ this.prev()})
+                content.append(btn)
+            }
+            if(part_type == 'right' && !content.classList.contains('no-btn-next') && !content.querySelector('booklet-btn-next')){
+                let btn = document.createElement('button')
+                btn.classList.add('booklet-btn-next','booklet-btn-turn','booklet-content-btn','clickable');
+                btn.addEventListener('click',(evnet)=>{ this.next()})
+                content.append(btn)
+            }
+        })
+    }
     setPageByIdx(idx){
         idx = parseInt(idx,10)
         let pages = this.pages
@@ -53,7 +79,7 @@ class Booklet{
     }
 
     triggerSync(){
-        const sync = new CustomEvent("booklet-sync", { detail: {"booklet":this}, });
+        const sync = new CustomEvent("booklet.sync", { detail: {"booklet":this}, });
         this.target.dispatchEvent(sync);
     }
 
@@ -116,15 +142,35 @@ class Booklet{
         return this.pages.length
     }
 
-    onclick(event){
-        const target = event.target
-        if(target.closest('.clickable')){
-            if(target.closest('.booklet-page-part.left')){
-                this.prev();
-            }
-            if(target.closest('.booklet-page-part.right')){
-                this.next();
-            }
-        }
+    detail(part){
+        const content = part.querySelector('.booklet-page-content');
+        const img = part.querySelector('.booklet-page-content-img');
+        console.log('재선언해서 도작하도록 하자',content,img);
+        
     }
+
+    //@deprecatd
+    // onclick(event){
+    //     const target = event.target
+    //     const clickable_target = target.closest('.clickable')
+    //     if(clickable_target){
+    //         if(target.classList.contains('booklet-page-content')){
+    //             if(target.closest('.booklet-page-part.left')){
+    //                 this.prev();
+    //             }
+    //             if(target.closest('.booklet-page-part.right')){
+    //                 this.next();
+    //             }
+    //         }else if(target.classList.contains('clickable')){
+    //             this.target.dispatchEvent((new CustomEvent("booklet.click", { 
+    //                 detail: {
+    //                     "booklet":this,
+    //                     "target":target,
+    //                     "content":target.closest('.booklet-page-content'),
+    //                     "part":target.closest('.booklet-page-part')
+    //                 }, 
+    //             })));
+    //         }
+    //     }
+    // }
 }
