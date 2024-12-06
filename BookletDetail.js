@@ -54,6 +54,9 @@ class BookletDetail{
         target.addEventListener('pointerdown',(event)=>{
             this.onpointerdown(event);
         })
+        target.addEventListener('scroll',(event)=>{
+            this.triggerSync()
+        })
 
     }
     onpointerdown(event){
