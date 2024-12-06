@@ -126,9 +126,17 @@
                 </nav>
                 <hr>
                 <nav class="d-flex justify-content-center gap-2 m-2">
-                    <button type="button" class="btn btn-sm btn-primary" onclick="document.querySelectorAll('.booklet-page-content-img').forEach((el)=>{el.src = 'pages/page-rect.png'; el.addEventListener('load',()=>{ bd0.center() },{once:true}) });">일반 이미지</button>
-                    <button type="button" class="btn btn-sm btn-primary" onclick="document.querySelectorAll('.booklet-page-content-img').forEach((el)=>{el.src = 'pages/page-v-long.png'; el.addEventListener('load',()=>{ bd0.center() },{once:true}) });">세로 긴 이미지</button>
-                    <button type="button" class="btn btn-sm btn-primary" onclick="document.querySelectorAll('.booklet-page-content-img').forEach((el)=>{el.src = 'pages/page-h-long.png'; el.addEventListener('load',()=>{ bd0.center() },{once:true}) });">가로 긴 이미지</button> 
+                    <button type="button" class="btn btn-sm btn-primary" onclick="document.querySelectorAll('.booklet-page-content-img').forEach((el)=>{el.src = 'pages/page-rect.png';});">일반 이미지</button>
+                    <button type="button" class="btn btn-sm btn-primary" onclick="document.querySelectorAll('.booklet-page-content-img').forEach((el)=>{el.src = 'pages/page-v-long.png';});">세로 긴 이미지</button>
+                    <button type="button" class="btn btn-sm btn-primary" onclick="document.querySelectorAll('.booklet-page-content-img').forEach((el)=>{el.src = 'pages/page-h-long.png';});">가로 긴 이미지</button> 
+                    <button type="button" class="btn btn-sm btn-primary" onclick="document.querySelectorAll('.booklet-page-content-img').forEach((el)=>{
+                        let ri = Math.floor(Math.random()*3);
+                        switch(ri){
+                            case 0:el.src = 'pages/page-rect.png';break;
+                            case 1:el.src = 'pages/page-v-long.png';break;
+                            case 2:el.src = 'pages/page-h-long.png';break;
+                        }
+                        });">랜덤 이미지</button> 
                 </nav>
             </footer>
         </article>
