@@ -247,20 +247,21 @@ html,body{
 /* 콘텐츠 */
 .booklet-page-content{
     position: relative;
-    display: flex;
     pointer-events: all;
     background-color: #fff;
     aspect-ratio: var(--img-aspect-ratio);
+    display: flex;
+    justify-content: center;
 }
 .clickable .booklet-page-content{
     cursor: pointer;
 }
-.booklet-page-part.left .booklet-page-content{
+/* .booklet-page-part.left .booklet-page-content{
     justify-content: flex-end;
 }
 .booklet-page-part.right .booklet-page-content{
     justify-content: flex-start;
-}
+} */
 :where(.booklet-page-part.left , .booklet-page-part.right) .booklet-page-content::before{
     content: "";
     width: 5%;
@@ -296,7 +297,7 @@ html,body{
 }
 
 /* 이미지 */
-.booklet-page-content > img{
+.booklet-page-content-img{
     max-width: 100%;
     max-height: 100%;  
     

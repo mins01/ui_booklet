@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko" >
 <head>
-    <title>BOOKLET STYLE</title>
+    <title>BOOKLET FOR WEB</title>
     <meta charset="utf-8">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta http-equiv="Content-Style-Type" content="text/css">
@@ -27,105 +27,32 @@
     
     <!-- meta og -->
     
-    <meta property="og:title" content="booklet style">
-    <meta property="og:description" content="booklet style">
+    <meta property="og:title" content="booklet for web">
+    <meta property="og:description" content="booklet for web">
     <meta name="og:image" content="http://www.mins01.com/img/logo.gif">
     <meta property="og:image:width" content="190">
     <meta property="og:image:height" content="70" />
-    <meta property="og:site_name" content="booklet style" />
+    <meta property="og:site_name" content="booklet for web" />
     <meta property="og:type" content="website">
     
-    <!-- //meta og -->
-
-    <link rel="stylesheet" href="booklet.css">
-    <script src="Booklet.js"></script>
-    <script>
-        window.addEventListener('load',(event)=>{
-            document.querySelector('#booklet0').addEventListener('booklet-sync',(event)=>{
-                console.log('booklet-sync',event.detail.booklet);
-                const booklet = event.detail.booklet
-                document.querySelector('#input_page').value = booklet.pageIdx+1;
-                document.querySelector('#input_page').max = booklet.length;
-                document.querySelector('#input_page').min = 1;
-                
-            }) 
-
-            let booklet0 = globalThis.booklet0 = new Booklet(document.querySelector('#booklet0'));
-            // booklet0.setPageByIdx(1)
-
-        })
-    </script>
-    
+    <!-- //meta og -->    
 </head>
 <body>
-    <div class="booklet-container">
-        <article id="booklet0" class="booklet" data-fold="1">
-            <header class="booklet-header">
-                <nav class="m-2">
-                    <h1 class="m-0 p-0">BOOKLET: E-BOOK</h1>
-                </nav>
-            </header>
-            <div class="booklet-body clickable">
-                <div class="booklet-pages">
-                    <div class="booklet-page">
-                        <div class="booklet-page-layout">
-                            <div class="booklet-page-part left"><div class="booklet-page-transform"><div class="booklet-page-content empty"><div class="booklet-page-content-page">EMPTY</div></div></div></div>
-                            <div class="booklet-page-part right"><div class="booklet-page-transform"><div class="booklet-page-content cover"><div class="booklet-page-content-page">COVER</div><img src="imgs/page-rect.png"></div></div></div>
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="my-3">
+            <h1>BOOKLET FOR WEB</h1>
+            <ul class="list-group">
+                <li class="list-group-item">웹에서 사용할 책(이북)</li>
+            </ul>
+        </div>
+        <div class="my-3">
+            <h2>SAMPLE</h2>
+            <div class="list-group">
+                <a class="list-group-item list-group-item-action" href="sample/booklet.html">책 샘플 🔗</a>
+                <a class="list-group-item list-group-item-action" href="sample/detail.html">상세보기+미니맵 샘플 🔗</a>
+            </div>    
+        </div>
 
-                    <div class="booklet-page">
-                        <div class="booklet-page-layout">
-                            <div class="booklet-page-part left"><div class="booklet-page-transform"><div class="booklet-page-content blank"><div class="booklet-page-content-page">BLANK</div><img src="imgs/page-rect.png"></div></div></div>
-                            <div class="booklet-page-part right"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">1</div><img src="imgs/page-rect.png"></div></div></div>
-                        </div>
-                    </div>
-                    <div class="booklet-page">
-                        <div class="booklet-page-layout">
-                            <div class="booklet-page-part left"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">2</div><img src="imgs/page-rect.png"></div></div></div>
-                            <div class="booklet-page-part right"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">3</div><img src="imgs/page-rect.png"></div></div></div>
-                        </div>
-                    </div>
-                    <div class="booklet-page">
-                        <div class="booklet-page-layout">
-                            <div class="booklet-page-part left"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">4</div><img src="imgs/page-rect.png"></div></div></div>
-                            <div class="booklet-page-part right"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">5</div><img src="imgs/page-rect.png"></div></div></div>
-                        </div>
-                    </div>
-                    <div class="booklet-page">
-                        <div class="booklet-page-layout">
-                            <div class="booklet-page-part left"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">6</div><img src="imgs/page-rect.png"></div></div></div>
-                            <div class="booklet-page-part right"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">7</div><img src="imgs/page-rect.png"></div></div></div>
-                        </div>
-                    </div>
-                    <div class="booklet-page">
-                        <div class="booklet-page-layout">
-                            <div class="booklet-page-part left"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">8</div><img src="imgs/page-rect.png"></div></div></div>
-                            <div class="booklet-page-part right"><div class="booklet-page-transform"><div class="booklet-page-content"><div class="booklet-page-content-page">9</div><img src="imgs/page-rect.png"></div></div></div>
-                        </div>
-                    </div>
-                    <div class="booklet-page">
-                        <div class="booklet-page-layout">
-                            <div class="booklet-page-part left"><div class="booklet-page-transform"><div class="booklet-page-content cover"><div class="booklet-page-content-page">COVER</div><img src="imgs/page-rect.png"></div></div></div>
-                            <div class="booklet-page-part right"><div class="booklet-page-transform"><div class="booklet-page-content empty"><div class="booklet-page-content-page">EMPTY</div></div></div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <footer class="booklet-footer">
-                <nav class="d-flex justify-content-center gap-2 m-2">
-                    <button type="button" class="btn btn-primary" onclick="booklet0.first()">처음</button>
-                    <button type="button" class="btn btn-primary" onclick="booklet0.prev()">이전</button>
-                    <div class="input-group d-inline-flex" style="width: 8em;">
-                        <input type="number" class="form-control" min="0" placeholder="Recipient's username" value="0" id="input_page">
-                        <button type="button" class="btn btn-primary" onclick="booklet0.page( document.querySelector('#input_page').value - 1)">이동</button>    
-                    </div>
-                    
-                    <button type="button" class="btn btn-primary" onclick="booklet0.next()">다음</button>
-                    <button type="button" class="btn btn-primary" onclick="booklet0.last()">마지막</button>
-                </nav>
-            </footer>
-        </article>
     </div>
 </body>
 </html>
