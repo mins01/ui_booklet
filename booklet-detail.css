@@ -118,6 +118,7 @@ html,body{
     object-fit: cover;
 
     /* margin: 2%; */
+    min-height: 100%;
 }
 .booklet-detail-view.moveable{
     scrollbar-width: none;
