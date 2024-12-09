@@ -32,23 +32,23 @@ class Booklet{
     }
 
     appendContentBtns(){
-        this.target.querySelectorAll('.booklet-page-part').forEach((part)=>{
-            const content = part.querySelector('.booklet-page-content');
+        this.target.querySelectorAll('.booklet-page-side').forEach((part)=>{
+            const content = part.querySelector('.booklet-content');
             if(!content) return;
-            const part_type = part.dataset.part??'single';
+            const side_type = part.dataset.side??'single';
             if(!content.classList.contains('no-btn-detail') && !content.querySelector('booklet-btn-detail')){
                 let btn = document.createElement('button')
                 btn.classList.add('booklet-btn-detail','booklet-content-btn','clickable');
-                btn.addEventListener('click',(evnet)=>{ this.detail(evnet.target.closest('.booklet-page-part'))})
+                btn.addEventListener('click',(evnet)=>{ this.detail(evnet.target.closest('.booklet-page-side'))})
                 content.append(btn)
             }
-            if(part_type == 'left' && !content.classList.contains('no-btn-prev') && !content.querySelector('booklet-btn-prev')){
+            if(side_type == 'left' && !content.classList.contains('no-btn-prev') && !content.querySelector('booklet-btn-prev')){
                 let btn = document.createElement('button')
                 btn.classList.add('booklet-btn-prev','booklet-btn-turn','booklet-content-btn','clickable');
                 btn.addEventListener('click',(evnet)=>{ this.prev()})
                 content.append(btn)
             }
-            if(part_type == 'right' && !content.classList.contains('no-btn-next') && !content.querySelector('booklet-btn-next')){
+            if(side_type == 'right' && !content.classList.contains('no-btn-next') && !content.querySelector('booklet-btn-next')){
                 let btn = document.createElement('button')
                 btn.classList.add('booklet-btn-next','booklet-btn-turn','booklet-content-btn','clickable');
                 btn.addEventListener('click',(evnet)=>{ this.next()})
@@ -143,8 +143,8 @@ class Booklet{
     }
 
     detail(part){
-        const content = part.querySelector('.booklet-page-content');
-        const img = part.querySelector('.booklet-page-content-img');
+        const content = part.querySelector('.booklet-content');
+        const img = part.querySelector('.booklet-content-img');
         console.log('재선언해서 도작하도록 하자',content,img);
         
     }
@@ -154,11 +154,11 @@ class Booklet{
     //     const target = event.target
     //     const clickable_target = target.closest('.clickable')
     //     if(clickable_target){
-    //         if(target.classList.contains('booklet-page-content')){
-    //             if(target.closest('.booklet-page-part.left')){
+    //         if(target.classList.contains('booklet-content')){
+    //             if(target.closest('.booklet-page-side.left')){
     //                 this.prev();
     //             }
-    //             if(target.closest('.booklet-page-part.right')){
+    //             if(target.closest('.booklet-page-side.right')){
     //                 this.next();
     //             }
     //         }else if(target.classList.contains('clickable')){
@@ -166,8 +166,8 @@ class Booklet{
     //                 detail: {
     //                     "booklet":this,
     //                     "target":target,
-    //                     "content":target.closest('.booklet-page-content'),
-    //                     "part":target.closest('.booklet-page-part')
+    //                     "content":target.closest('.booklet-content'),
+    //                     "part":target.closest('.booklet-page-side')
     //                 }, 
     //             })));
     //         }
